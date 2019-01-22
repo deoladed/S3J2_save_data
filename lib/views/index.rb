@@ -12,7 +12,7 @@ class Index # Un petit menu pour laisser un peu le choix. Beaucoup de texte, des
     puts '1 - Json power'
     puts '2 - Google spreadshIt'
     puts '3 - CSV style'
-    puts '4 - Je suis gourmand(e), je veux tout'
+    puts '4 - Je suis gourmand(e), je veux les 3 !'
     puts "99 - R, niet, nada de quepouic, ca ne m'interesse pas ton truc"
     reponse = gets.chomp.to_i
   end

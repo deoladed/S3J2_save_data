@@ -23,11 +23,9 @@ class Scrapper
 
   def get_townhall_urls
     urls = []
-    urlcomplete = []
-    doc = Nokogiri::HTML(open('http://annuaire-des-mairies.com/val-d-oise.html')) # recuperation des urls des mairies du 92
-    doc.xpath('//p/a').each { |node| urls << node['href'][1..-1] }
-    urls.each { |url| urlcomplete << "https://www.annuaire-des-mairies.com#{url}" } # restructuration des urls
-    urlcomplete
+    doc = Nokogiri::HTML(open('http://annuaire-des-mairies.com/val-d-oise.html')) 
+    doc.xpath('//p/a').each { |node| urls << node['href'][1..-1] } # recuperation des urls des mairies du 92, suppression des caracteres superflus
+    urls.map! { |url| "https://www.annuaire-des-mairies.com" + url } # restructuration des urls
   end
 
   def save_as_json
@@ -51,10 +49,7 @@ class Scrapper
 
   def save_as_csv
     CSV.open('db/emails.csv', 'w') do |csv| # On ouvre le fichier csv
-      @@ensemble.each.with_index do |haash, i|
-        csv << [i + 1, haash.keys.to_s[2..-3], haash.values.to_s[2..-3]] # Et on stock nos valeurs denudees de leurs guillemets, avec un numero de ligne devant
-        # Ou a partir des array: @ville.size.times {|i| csv << [i+1, @ville[i], @email[i]]}
-      end
+      @@ensemble.each.with_index { |haash, i| csv << [i + 1, haash.keys.to_s[2..-3], haash.values.to_s[2..-3]] } # Et on stock nos valeurs sans leurs guillemets, avec un numero de ligne devant
     end
     puts "\nEmails des mairies enregistrees au format CSV"
   end
