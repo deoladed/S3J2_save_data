@@ -32,7 +32,7 @@ class Scrapper
     File.open('db/emails.json', 'w') do |f| # On ouvre le fichier de stockage json, autorisE en ecriture (w)
       f.write(@@ensemble.to_json) # Et on y ecrit le contenu de nos hash
     end
-    puts "\nEmails des mairies enregistrees au format Json"
+    puts "\nEmails des mairies enregistrees au format Json dans 'db/emails.json'"
   end
 
   def save_as_spreadsheet
@@ -51,6 +51,6 @@ class Scrapper
     CSV.open('db/emails.csv', 'w') do |csv| # On ouvre le fichier csv
       @@ensemble.each.with_index { |haash, i| csv << [i + 1, haash.keys.to_s[2..-3], haash.values.to_s[2..-3]] } # Et on stock nos valeurs sans leurs guillemets, avec un numero de ligne devant
     end
-    puts "\nEmails des mairies enregistrees au format CSV"
+    puts "\nEmails des mairies enregistrees au format CSV dans 'db/emails.csv'"
   end
 end
