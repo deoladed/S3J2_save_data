@@ -4,6 +4,7 @@ Bienvenue dans mon projet jeune correcteur!
 Tu y trouvera un magnifique logiciel : app.rb
 Il appelle une classe nommee Scrapper situee dans lib/app/scrapper.rb
 Cette classe va recuperer toutes les adresses mails des mairies puis les stocker sous differents formats au choix.
+Execute app.rb et detends-toi, ca va bien se passer!
 A toi de jouer !
 
 Ps : evidement, il est impossible de tester les spreadsheet google sans mes identifiants.
